@@ -1,0 +1,27 @@
+{
+  "name": "quiz_project",
+  "version": "1.0.0",
+  "description": "JavaScript/Nodejs/Postgresql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonyTheRiskTaker/Quiz_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonyTheRiskTaker/Quiz_Project/issues"
+  },
+  "homepage": "https://github.com/antonyTheRiskTaker/Quiz_Project#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.3",
+    "jest": "^27.5.1",
+    "knex": "^1.0.4"
+  }
+}
