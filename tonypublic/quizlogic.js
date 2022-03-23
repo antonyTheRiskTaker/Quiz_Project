@@ -11,8 +11,21 @@ There are a few things we need to do:
 
 /* 
 The flow of the programme:
-1. 
-2. 
+1. startGame()
+1.1. hide the start button
+1.2. set an array of shuffled questions
+1.3. make question container visible
+2. setNextQuestion()
+2.1. 
+3. showQuestion()
+3.1. populate the question div with the first question of the shuffled array
+3.2. For each option (4 in total) of the question, create a button, populate each button with the option's text, add the css class 'btn' to the button, if the answer is set to true, set a data attribute 'correct' to the button
+4. 
+5. 
+6. 
+7. 
+8. 
+9. 
 */
 
 const startButton = document.getElementById('start-btn');
