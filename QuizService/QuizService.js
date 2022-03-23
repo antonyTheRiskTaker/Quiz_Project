@@ -4,4 +4,6 @@ class QuizService {
   }
 
   // Other functions
+  startGame() {}
+  
 }
