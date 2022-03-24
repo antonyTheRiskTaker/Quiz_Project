@@ -1,28 +1,35 @@
-const express = require('express');
-
 class QuizRouter {
-  constructor(quizService) {
-    this.quizService = quizService;
+  constructor(/*quizService,*/express) {
+    // this.quizService = quizService;
+    this.express = express;
   }
 
   router() {
-    let router = express.Router();
+    let router = this.express.Router();
 
     router.get('/', this.get.bind(this));
-    router.post();
-    router.put();
-    router.delete();
+    router.get('/admin', this.getAdmin.bind(this));
+    // router.post();
+    // router.put();
+    // router.delete();
 
     return router;
   }
 
-  get() {}
+  // Homepage
+  get(req, res) {
+    res.render("home");
+  }
 
-  post() {}
+  getAdmin(req, res) {
+    res.render("admin", { layout: false });
+  }
 
-  put() {}
+  // post(req, res) { }
 
-  delete() {}
+  // put(req, res) { }
+
+  // delete(req, res) { }
 }
 
 module.exports = QuizRouter;
