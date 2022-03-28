@@ -9,11 +9,14 @@ const QuizRouter = require("./QuizRouter/QuizRouter");
 
 // Setting up handlebars
 const { engine } = require("express-handlebars");
+const { homedir } = require("os");
 app.engine("handlebars", engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Set up middleware and serve public server
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static("public"))
 
 // Set up a simple authoriser using basic auth, just for Antony's learning purpose. Can be removed.
 let users = [
@@ -61,31 +64,13 @@ app.use("/", quizRouter.router());
 
 // Show error page
 // '*' means whatever resource you are querying that don't exist
-app.all("*", (req, res) => {
-  res.status(404).send("Resource not found.");
-});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}.`);
 });
 
-//
-app.get("/", (req, res) => {
-  res.render("home", { style: "Home.css" });
-});
 
-app.get("/admin", (req, res) => {
-  res.render("admin", { style: "admin.css" });
-});
 
-app.get("/congratulation", (req, res) => {
-  res.render("congratulation", { style: "congratulation.css" });
-});
-
-app.get("/signup", (req, res) => {
-  res.render("signup", { style: "signup.css" });
-});
-
-app.get("/quizarea", (req, res) => {
-  res.render("quizarea", { style: "quizarea.css" });
+app.all("*", (req, res) => {
+  res.status(404).send("Resource not found.");
 });
