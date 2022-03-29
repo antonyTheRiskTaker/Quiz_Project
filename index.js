@@ -15,11 +15,8 @@ const port = 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 // Setting up handlebars
-<<<<<<< HEAD
-=======
 const { engine } = require("express-handlebars");
 const { homedir } = require("os");
->>>>>>> 472bef949dd22df4994e148167749c719188e4d8
 app.engine("handlebars", engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 // Set up session
@@ -31,7 +28,6 @@ app.use(
   })
 );
 
-<<<<<<< HEAD
 // Set up knex
 const knexFile = require('./knexfile').development;
 const knex = require('knex')(knexFile);
@@ -77,34 +73,15 @@ passport.use(
       // }
     } catch (err) {
       done(err);
-=======
+    }
+  })
+);
+
+
 // Set up middleware and serve public server
 // app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.static("public"))
-
-// Set up a simple authoriser using basic auth, just for Antony's learning purpose. Can be removed.
-let users = [
-  {
-    username: "cody",
-    password: "123",
-  },
-  {
-    username: "tony",
-    password: "456",
-  },
-];
-
-const myAuthorizer = (username, password) => {
-  return users.some((obj) => {
-    if (username === obj.username && password === obj.password) {
-      return true;
-    } else {
-      return false;
->>>>>>> 472bef949dd22df4994e148167749c719188e4d8
-    }
-  })
-);
 
 passport.use(
   'local-signup',
@@ -195,21 +172,17 @@ passport.use(
 
 // app.use("/", quizRouter.router());
 
-<<<<<<< HEAD
 // Serialise and deserialise user
 passport.serializeUser((user, done) => {
   done(null, user);
 });
-=======
 // Show error page
 // '*' means whatever resource you are querying that don't exist
->>>>>>> 472bef949dd22df4994e148167749c719188e4d8
 
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-<<<<<<< HEAD
 // Protect your page handlers
 // function isLoggedIn(req, res, next) {
 //   if (req.isAuthenticated())
@@ -227,8 +200,6 @@ app.get("/admin", (req, res) => {
 app.get("/congratulation", (req, res) => {
   res.render("congratulation", { style: "congratulation.css" });
 });
-=======
->>>>>>> 472bef949dd22df4994e148167749c719188e4d8
 
 
 app.all("*", (req, res) => {
