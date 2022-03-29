@@ -1,85 +1,271 @@
-<body class="u-body u-xl-mode">
+<title>homePage</title>
+{{>header}}
 
-  <section class="u-black u-clearfix u-section-1" id="sec-ef54">
-    <div
-      class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1"
-    >
-      <div
-        class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1"
-      >
-        <div class="u-layout">
-          <div class="u-layout-row">
-            <div
-              class="u-container-style u-layout-cell u-radius-30 u-shape-round u-size-15 u-size-30-md u-layout-cell-1"
-            >
-              <div
-                class="u-border-2 u-border-palette-3-base u-container-layout u-container-layout-1"
-              >
-                <span
-                  class="u-file-icon u-icon u-icon-rectangle u-text-palette-3-base u-icon-1"
-                ><img src="images/8.png" alt="" /></span>
-                <a
-                  href="https://nicepage.com/wysiwyg-html-editor"
-                  class="u-active-palette-3-base u-border-2 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-3-base u-btn u-btn-round u-button-style u-hover-white u-none u-radius-30 u-btn-1"
-                >go</a>
-                <p
-                  class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xs u-text-palette-3-base u-text-1"
-                >
-                  change your credentials here
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+
+<main>
+    {{!-- intro begins here --}}
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">QUIZZES</h1>
+                <p class="lead text-muted">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim doloremque quo voluptate dolorum
+                    ratione porro nostrum asperiores recusandae sint corporis ad quia aliquam laboriosam numquam
+                    quae pariatur, placeat esse expedita!
                 </p>
-              </div>
+
             </div>
-            <div
-              class="u-container-style u-layout-cell u-radius-30 u-shape-round u-size-15 u-size-30-md u-layout-cell-2"
-            >
-              <div
-                class="u-border-2 u-border-palette-2-base u-container-layout u-container-layout-2"
-              >
-                <span class="u-file-icon u-icon u-icon-2"><img
-                    src="images/3874176-9.png"
-                    alt=""
-                  /></span>
-                <a
-                  href="https://nicepage.com/website-mockup"
-                  class="u-active-palette-2-base u-border-2 u-border-active-palette-2-base u-border-hover-palette-2-base u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-white u-none u-radius-30 u-btn-2"
-                >go</a>
-                <p
-                  class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-text u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xs u-text-palette-2-base u-text-2"
-                >
-                  add or delete quiz here
-                </p>
-              </div>
-            </div>
-            <div
-              class="u-container-style u-layout-cell u-radius-30 u-shape-round u-size-15 u-size-30-md u-layout-cell-3"
-            >
-              <div
-                class="u-border-2 u-border-custom-color-2 u-container-layout u-container-layout-3"
-              >
-                <span
-                  class="u-file-icon u-icon u-text-custom-color-2 u-icon-3"
-                ><img src="images/10.png" alt="" /></span>
-                <a
-                  href="https://nicepage.app"
-                  class="u-active-custom-color-2 u-border-2 u-border-custom-color-2 u-border-hover-custom-color-2 u-btn u-btn-round u-button-style u-hover-white u-none u-radius-30 u-btn-3"
-                >go</a>
-                <p
-                  class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xs u-text u-text-custom-color-2 u-text-default-lg u-text-default-md u-text-default-sm u-text-default-xs u-text-3"
-                >
-                  view all the players and their info
-                </p>
-              </div>
-            </div>
-            <div
-              class="u-container-style u-layout-cell u-radius-30 u-shape-round u-size-15 u-size-30-md u-layout-cell-4"
-            >
-              <div
-                class="u-border-2 u-border-white u-container-layout u-container-layout-4"
-              ></div>
-            </div>
-          </div>
         </div>
-      </div>
+    </section>
+    {{!-- intro ends here --}}
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    {{!-- card1 begins here --}}
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                thumb nail of the quiz of th quiz
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                Add Update or delete quiz as admin
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        start
+                                    </button>
+
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        update
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        delete
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- card1 ends here --}}
+                </div>
+
+                {{!-- card2 begins here --}}
+                {{!-- <div class="col">
+
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                thumb nail of the quiz
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        start
+                                    </button>
+
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        update
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        delete
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> --}}
+                {{!-- card2 ends here --}}
+
+                {{!-- card3 begins here --}}
+                {{!-- <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                thumb nail of the quiz
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        start
+                                    </button>
+
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        update
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        delete
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                {{!-- card3 ends here --}}
+
+                <div class="col">
+                    {{!-- card4 begins here --}}
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                players
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                check players score and detalis as a admin
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        View
+                                        profile
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- card4 ends here --}}
+                </div>
+
+                {{!-- card5 begins here --}}
+                {{!-- <div class="col">
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                thumb nail of the quiz
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        View
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                {{!-- card5 ends here --}}
+
+                <div class="col">
+                    {{!-- card6 begins here --}}
+                    <div class="card shadow-sm">
+                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                            xmlns="http://www.w3.org/2000/svg" role="img"
+                            aria-label="Placeholder: thumb nail of the quiz" preserveAspectRatio="xMidYMid slice"
+                            focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                                thumb nail of the quiz
+                            </text>
+                        </svg>
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                This is a wider card with supporting text below as a natural
+                                lead-in to additional content. This content is a little bit
+                                longer.
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        View
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                                        Edit
+                                    </button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- card6 ends here --}}
+
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
-</body>
+</main>
