@@ -2,3 +2,5 @@ node_modules/
 .env
 project.zip
 tests
+package-lock.json
+package.json
