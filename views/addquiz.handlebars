@@ -1,0 +1,37 @@
+{{>header}}
+<link rel="stylesheet" href="css/addquiz.css">
+<div class="main-container">
+    <form class="p-4 p-md-5 border rounded-3 bg-light">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Title:</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="WEB development">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="web development is a... making of web applications by human beings..."></textarea>
+        </div>
+        {{!-- option begins here --}}
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">option "A"</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">option "B"</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">option "C"</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">option "D"</label>
+        </div>
+        {{!-- option ends here --}}
+        <button type="submit" class="btn btn-outline-success w-100 btn-lg ">add</button>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-outline-danger w-100 btn-lg">reset</button>
+    </form>
+</div>

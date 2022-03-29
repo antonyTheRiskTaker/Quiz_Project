@@ -21,6 +21,9 @@ app.get("/admin", (req, res) => {
 app.get("/quizarea", (req, res) => {
     res.render('quizarea')
 })
+app.get("/addquiz", (req, res) => {
+    res.render("addquiz")
+})
 
 app.listen(port, () => {
     console.log("server running on RTX3080")
