@@ -4,7 +4,7 @@ const express = require("express");
 const path = require("path");
 const session = require('express-session');
 const passport = require('passport');
-const basicAuth = require("express-basic-auth");
+// const basicAuth = require("express-basic-auth");
 const { engine } = require("express-handlebars");
 
 // Set up Express and environment
@@ -13,9 +13,10 @@ const port = 3000;
 
 // Set up middleware
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"))
+// app.use(express.static(path.join(__dirname, "public")));
 // Setting up handlebars
-const { engine } = require("express-handlebars");
+// const { engine } = require("express-handlebars");
 const { homedir } = require("os");
 app.engine("handlebars", engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -40,7 +41,7 @@ app.use(passport.session());
 const LocalStrategy = require('passport-local').Strategy;
 // Set up bcrypt to created hashed passwords and compare passwords (the inputted one and the stored one)
 const bcrypt = require('./bcrypt.js');
-const { urlencoded } = require("express");
+// const { urlencoded } = require("express");
 const { user } = require("pg/lib/defaults");
 
 passport.use(
@@ -76,12 +77,6 @@ passport.use(
     }
   })
 );
-
-
-// Set up middleware and serve public server
-// app.use(express.static(path.join(__dirname, "public")));
-
-app.use(express.static("public"))
 
 passport.use(
   'local-signup',
@@ -126,36 +121,6 @@ passport.use(
 
 // Require user-created modules
 // const QuizRouter = require("./QuizRouter/QuizRouter");
-// const { default: knex } = require("knex");
-
-// Set up a simple authoriser using basic auth, just for Antony's learning purpose. Do not remove it until proper authentication is implemented.
-// let users = [
-//   {
-//     username: "cody",
-//     password: "123",
-//   },
-//   {
-//     username: "tony",
-//     password: "456",
-//   },
-// ];
-
-// const myAuthorizer = (username, password) => {
-//   return users.some((obj) => {
-//     if (username === obj.username && password === obj.password) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-// };
-
-// app.use(
-//   basicAuth({
-//     authorizer: myAuthorizer,
-//     challenge: true,
-//   })
-// );
 
 // Set up Router and Service class instances
 // const quizRouter = new QuizRouter(express);
@@ -176,24 +141,37 @@ passport.use(
 passport.serializeUser((user, done) => {
   done(null, user);
 });
-// Show error page
-// '*' means whatever resource you are querying that don't exist
 
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
 // Protect your page handlers
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated())
-// }
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('./signin');
+}
 
 // Set up pages
 app.get("/", (req, res) => {
   res.render("home", { style: "Home.css" });
 });
 
-app.get("/admin", (req, res) => {
+app.get('/signin', (req, res) => {
+  res.render("signin");
+});
+
+app.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
+app.get('/error', (req, res) => {
+  res.render('error')
+})
+
+app.get("/admin", isLoggedIn, (req, res) => {
   res.render("admin", { style: "admin.css" });
 });
 
@@ -201,27 +179,24 @@ app.get("/congratulation", (req, res) => {
   res.render("congratulation", { style: "congratulation.css" });
 });
 
-
-app.all("*", (req, res) => {
-  res.status(404).send("Resource not found.");
-});
-
-app.post('/signup', passport.authenticate("local-signup", {
-  successRedirect: "/login",
-  failureRedirect: "/error",
-}));
-
-app.post('/login', passport.authenticate("local-login", {
-  successRedirect: "/",
-  failureRedirect: "/error",
-})
-);
-
 // Show error page
 // '*' means whatever resource you are querying that don't exist
 app.all("*", (req, res) => {
   res.status(404).send("Resource not found.");
 });
+
+// Signup route
+app.post('/signup', passport.authenticate("local-signup", {
+  successRedirect: "/signin",
+  failureRedirect: "/error",
+}));
+
+// Signin route
+app.post('/signin', passport.authenticate("local-login", {
+  successRedirect: "/",
+  failureRedirect: "/error",
+})
+);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}.`);
