@@ -24,6 +24,7 @@ module.exports.checkPassword = (plainTextPassword, hashedPassword) => {
         reject(err);
       }
 
+      console.log(match);
       resolve(match);
     });
   });

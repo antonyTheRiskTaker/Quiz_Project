@@ -1,4 +1,5 @@
 // Require Node packages
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const session = require('express-session');
@@ -11,6 +12,7 @@ const app = express();
 const port = 3000;
 
 // Set up middleware
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 // Setting up handlebars
 app.engine("handlebars", engine({ defaultLayout: "main" }));
@@ -24,9 +26,6 @@ app.use(
   })
 );
 
-// Require dotenv file
-require('dotenv').config();
-
 // Set up knex
 const knexFile = require('./knexfile').development;
 const knex = require('knex')(knexFile);
@@ -39,25 +38,37 @@ app.use(passport.session());
 const LocalStrategy = require('passport-local').Strategy;
 // Set up bcrypt to created hashed passwords and compare passwords (the inputted one and the stored one)
 const bcrypt = require('./bcrypt.js');
+const { urlencoded } = require("express");
+const { user } = require("pg/lib/defaults");
 
 passport.use(
   'local-login',
-  new LocalStrategy(async (email, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     try {
-      console.log('Logging in...');
-      // (Line below) make sure the name for the table storing user info is right
-      let users = await knex('users').where({ email: email });
-      if (users.length == 0) {
-        return done(null, false, { message: 'Incorrect User' });
+      const userQueries = await knex
+        .select('*')
+        .from('user_table')
+        .where('username', username);
+      if (userQueries.length > 0) {
+        console.log('User exists');
+        await bcrypt.checkPassword(password, userQueries[0].password);
+        return done(null, userQueries[0]);
       }
-      let user = users[0];
-      // (Line below) password = plainTextPassword, user.password = hashedPassword in checkPassword() of bcrypt.js
-      let result = await bcrypt.checkPassword(password, user.password);
-      if (result) {
-        return done(null, user);
-      } else {
-        return done(null, false, { message: "Incorrect username or password" });
-      }
+      return done(null, false);
+      // console.log('Logging in...');
+      // // (Line below) make sure the name for the table storing user info is right
+      // let users = await knex('users').where({ email: email });
+      // if (users.length == 0) {
+      //   return done(null, false, { message: 'Incorrect User' });
+      // }
+      // let user = users[0];
+      // // (Line below) password = plainTextPassword, user.password = hashedPassword in checkPassword() of bcrypt.js
+      // let result = await bcrypt.checkPassword(password, user.password);
+      // if (result) {
+      //   return done(null, user);
+      // } else {
+      //   return done(null, false, { message: "Incorrect username or password" });
+      // }
     } catch (err) {
       done(err);
     }
@@ -66,25 +77,39 @@ passport.use(
 
 passport.use(
   'local-signup',
-  new LocalStrategy(async (email, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     try {
-      // (Line below) make sure the name for the table storing user info is right
-      let users = await knex('users').where({ email: email });
-      if (users.length > 0) { // i.e. check if the email already exists
-        return done(null, false, { message: 'Email in use...'});
+      const userQueries = await knex
+        .select('username', 'id')
+        .from('user_table')
+        .where('username', username);
+      if (userQueries.length === 0) {
+        const hashed = await bcrypt.hashPassword(password);
+        console.log(hashed);
+        await knex
+          .insert({ username, password: hashed })
+          .into('user_table');
+        return done(null, userQueries[0]);
       }
-      let hash = await bcrypt.hashPassword(password);
 
-      // (Line below) a new user is created
-      const newUser = {
-        email: email,
-        password: hash,
-      };
+      return done(null, false);
+      // // (Line below) make sure the name for the table storing user info is right
+      // let users = await knex('users').where({ email: email });
+      // if (users.length > 0) { // i.e. check if the email already exists
+      //   return done(null, false, { message: 'Email in use...' });
+      // }
+      // let hash = await bcrypt.hashPassword(password);
 
-      // (Line below) to retrieve the user's id
-      let userID = await knex('users').insert(newUser).returning('id');
-      newUser.id = userID[0];
-      done(null, newUser);
+      // // (Line below) a new user is created
+      // const newUser = {
+      //   email: email,
+      //   password: hash,
+      // };
+
+      // // (Line below) to retrieve the user's id
+      // let userID = await knex('users').insert(newUser).returning('id');
+      // newUser.id = userID[0];
+      // done(null, newUser);
     } catch (err) {
       done(err);
     }
@@ -149,9 +174,9 @@ passport.deserializeUser((user, done) => {
 });
 
 // Protect your page handlers
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
-}
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated())
+// }
 
 // Set up pages
 app.get("/", (req, res) => {
@@ -173,6 +198,17 @@ app.get("/signup", (req, res) => {
 app.get("/quizarea", (req, res) => {
   res.render("quizarea", { style: "quizarea.css" });
 });
+
+app.post('/signup', passport.authenticate("local-signup", {
+  successRedirect: "/login",
+  failureRedirect: "/error",
+}));
+
+app.post('/login', passport.authenticate("local-login", {
+  successRedirect: "/",
+  failureRedirect: "/error",
+})
+);
 
 // Show error page
 // '*' means whatever resource you are querying that don't exist
